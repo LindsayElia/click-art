@@ -44,7 +44,8 @@ wrapper.appendChild(instructions);
 			"But be careful - refreshing the page will erase your artwork!</li>" +
 		"<li>To erase individual squares, choose the larger white square marked 'eraser', " + 
 			"then click over the square(s) on the canvas you want to erase.</li>" +
-		"<li>If you would like to share a screenshot of your artwork please share it with me via Twitter at @USFlin.</li>" +
+		"<li>If you would like to share a screenshot of your artwork please share it with me via Twitter at " + 
+		"<a href='https://twitter.com/USFlin' target='blank'>@USFlin</a>.</li>" +
 	"</ul>";
 
 // style some of the elements we just created

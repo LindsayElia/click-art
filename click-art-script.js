@@ -1,86 +1,79 @@
 // **************  PIXEL ART MAKER  **************
 
-// this gives me the first element called "body" from my document
-// I think that is what the [0] is for?
-// adding this after in-class review
-var body = document.getElementsByTagName("body")[0]; 
 
-// set the font for the whole page
+// getElementsByTagName always returns a NodeList, which is an Array-like object. 
+// We want the first thing in the array to get just one 'body' tag.
+var body = document.getElementsByTagName("body")[0];
+
+// set body styles
 body.style.fontFamily = "'Source Sans Pro', sans-serif";
+body.style.backgroundColor = "silver";
+body.style.marginTop = "0";
+body.style.paddingBottom = "50px";
 
 // create a wrapper to center everything on the page
 var wrapper = document.createElement("div");
 document.body.appendChild(wrapper);
-	wrapper.style.width = "1000px";
+	wrapper.style.width = "80%";
+	wrapper.style.minWidth = "900px";
 	wrapper.style.margin = "0 auto";
-//	wrapper.style.background = "red";
-//	wrapper.innerHTML = "...";
+	wrapper.style.background = "white";
+	wrapper.style.clear = "both";
 
 // create a <h1> heading for the page
-var header = document.createElement("h1");
-wrapper.appendChild(header);
-	header.innerHTML = "Click Art";
-	header.style.width = "70%";
-	header.style.margin = "0 35%";
-	header.style.fontSize = "6em";
-	header.style.color = "rgb(123, 152, 174)";
+var headerMain = document.createElement("h1");
+wrapper.appendChild(headerMain);
+	headerMain.innerHTML = "Click Art";
+	headerMain.style.width = "70%";
+	headerMain.style.margin = "0 auto";
+	headerMain.style.textAlign = "center";
+	headerMain.style.fontSize = "5em";
+	headerMain.style.color = "rgb(123, 152, 174)";
 
-//add some text inside of a <p> to tell visitors how to use the page
-var instructions1 = document.createElement("p");
-wrapper.appendChild(instructions1);
-	instructions1.style.margin = "0 10% 5px";
-	instructions1.innerHTML = "Hello and welcome to Click Art! "
+// add text inside of a <div> to tell visitors how to use the page
+var instructions = document.createElement("div");
+wrapper.appendChild(instructions);
+	instructions.style.margin = "0 10% 5px";
+	instructions.innerHTML = "<p style='margin:0;' >Hello and welcome to Click Art!</p>" + 
+	"<h2>Instructions</h2>" +
+	"<ul style='margin-top:0;' >" +
+		"<li>Click on one of the colored squares from the pallette below " + 
+			"the canvas and then click into the empty squares inside of the canvas to fill it with that color.</li>" +
+		"<li>If you would like to choose from a different set of colors, " +
+			"you can refresh the page for a brand new palette. " + 
+			"But be careful - refreshing the page will erase your artwork!</li>" +
+		"<li>To erase individual squares, choose the larger white square marked 'eraser', " + 
+			"then click over the square(s) on the canvas you want to erase.</li>" +
+		"<li>If you would like to share a screenshot of your artwork please share it with me via Twitter at @USFlin.</li>" +
+	"</ul>";
 
-// I'm using multiple <p> items because I could not figure out how to insert a <br /> tag or line return with JS.
-var instructions2 = document.createElement("p");
-wrapper.appendChild(instructions2);
-	instructions2.style.margin = "0 10% 5px";
-	instructions2.innerHTML = "Instructions: Click on one of the colored squares below " + 
-		"the canvas and then click into the empty squares inside of the canvas to fill it with that color. ";
+// style some of the elements we just created
+instructions.style.marginBottom = "40px";
+var headingTwo = document.getElementsByTagName("h2")[0];
+headingTwo.style.color = "rgb(123, 152, 174)";
+headingTwo.style.margin = "5px auto";
 
-var instructions3 = document.createElement("p");
-wrapper.appendChild(instructions3);
-	instructions3.style.margin = "0 10% 5px";
-	instructions3.innerHTML = "If you would like to choose from a different set of colors, " +
-		"you can refresh the page for a brand new palette. " + 
-		"But be careful - refreshing the page will erase your artwork! " +
-		"To erase individual squares, choose the larger white square marked 'eraser', " + 
-		"then click over the square(s) on the canvas you want to erase."
-		
-var instructions4 = document.createElement("p");
-wrapper.appendChild(instructions4);
-	instructions4.style.margin = "0 10% 3%";
-	instructions4.innerHTML = "If you would like to share a screenshot of your artwork you can tweet at me at @USFlin.";
-	
-
-// create a div to hold all of the empty squares
-var divContainer = document.createElement("div");
-wrapper.appendChild(divContainer);
-	divContainer.style.width = "1000px";
-//	divContainer.style.margin = "5% auto";
-//	divContainer.style.background = "blue";
-//	divContainer.innerHTML = "...";
-
-// var brushColor = "purple";  // don't need this any more
+// create a <div> to hold all of the empty squares
+var divCanvasContainer = document.createElement("div");
+wrapper.appendChild(divCanvasContainer);
+	divCanvasContainer.style.width = "800px";
+	divCanvasContainer.style.border = "5px solid gray";
+	divCanvasContainer.style.margin = "0 auto";
+	divCanvasContainer.style.display = "table";
 
 // create the empty squares
 // var createSquares = function(){
-	for (var i = 0; i < 15105; i++) {
+	for (var i = 0; i < 13095; i++) {
 		var tinyDiv = document.createElement("div");
-		divContainer.appendChild(tinyDiv);
+		divCanvasContainer.appendChild(tinyDiv);
 			tinyDiv.style.width = "5px";
 			tinyDiv.style.float = "left";
 			tinyDiv.style.padding = "0 0 5px 0";
-			// a border on all 4 sides looks too thick to me, 
 			// unfortunately the bottom and the right side of the last rows
 			// are missing borders
 			tinyDiv.style.borderLeft = "1px solid #dddddd";
 			tinyDiv.style.borderTop = "1px solid #dddddd";
-			// tinyDiv.innerHTML = ".";	
 			tinyDiv.className = "tinydiv";
-//			tinyDiv.addEventListener("click", function(){
-//			this.style.background = brushColor;
-//		})
 	}
 //};
 
@@ -88,11 +81,8 @@ wrapper.appendChild(divContainer);
 var paletteContainer = document.createElement("div");
 wrapper.appendChild(paletteContainer);
 	paletteContainer.style.clear = "both";
-	paletteContainer.style.width = "1000px";
-	paletteContainer.style.margin = "5% auto";
-	paletteContainer.style.padding = "20px";
-//	paletteContainer.style.background = "blue";
-//	paletteContainer.innerHTML = "...";
+	paletteContainer.style.width = "800px";
+	paletteContainer.style.margin = "20px auto";
 
 // make one white square so visitors can use it as an eraser
 var whiteDiv = document.createElement("div");
@@ -104,13 +94,24 @@ paletteContainer.appendChild(whiteDiv);
 	whiteDiv.style.background = "white";
 	whiteDiv.className = "palette";
 	whiteDiv.innerHTML = "Click here to load eraser";
-	whiteDiv.style.margin = "0 0 10px 0";
+	whiteDiv.style.margin = "0 0 50px 0";
+	whiteDiv.style.float = "left";
+	whiteDiv.style.position = "relative";
+	whiteDiv.style.left = "65px";
+
+// make a div to hold the colors to the side of the eraser
+var paletteContainerColors = document.createElement("div");
+paletteContainer.appendChild(paletteContainerColors);
+	paletteContainerColors.style.width = "465px";
+	paletteContainerColors.style.float = "right";
+	paletteContainerColors.style.position = "relative";
+	paletteContainerColors.style.right = "65px";
 
 // create the colored squares
 // var colorPalette = function(){
 		for (var x = 0; x < 30; x++){
 			var palDiv = document.createElement("div");
-			paletteContainer.appendChild(palDiv);
+			paletteContainerColors.appendChild(palDiv);
 				palDiv.style.width = "30px";
 				palDiv.style.float = "left";
 				palDiv.style.padding = "0 0 30px 0";
@@ -159,6 +160,14 @@ paletteContainer.appendChild(whiteDiv);
 		})
 	}
 //};
+
+// add a clearfix after the last element inside of the wrapper so that the 
+// height of the wrapper is always containing all inner elements
+var clearfixDiv = document.createElement("div");
+wrapper.appendChild(clearfixDiv);
+clearfixDiv.innerHTML = " ";
+clearfixDiv.style.clear = "both";
+clearfixDiv.style.display = "table";
 
 
 // colorPalette();

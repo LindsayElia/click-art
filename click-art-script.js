@@ -158,7 +158,7 @@ paletteContainer.appendChild(paletteContainerColors);
 				});
 			}
 		//}
-		})
+		});
 	}
 //};
 
